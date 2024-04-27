@@ -1,4 +1,4 @@
-package com.flush_card.demo;
+package com.flash_card.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.flush_card.demo;
+package com.flash_card.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

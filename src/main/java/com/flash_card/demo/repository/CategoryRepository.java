@@ -1,8 +1,8 @@
-package com.flush_card.demo.repository;
+package com.flash_card.demo.repository;
 
 import java.util.List;
 
-import com.flush_card.demo.entity.Categories;
+import com.flash_card.demo.entity.Categories;
 
 public interface CategoryRepository {
     int insertCategory(Categories categories);

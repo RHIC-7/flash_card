@@ -1,4 +1,4 @@
-package com.flush_card.demo.controller;
+package com.flash_card.demo.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,8 +23,8 @@ public class GetCategoryTest {
     }
 
     @Test
-    void requestPostCategory_response200() throws Exception {
-        this.mockmvc.perform(get("/get/category"))
+    void requestGetUserCategory_response200() throws Exception {
+        this.mockmvc.perform(get("/get/category/10"))
                 .andExpect(status().isOk());
     }
 }

@@ -1,4 +1,4 @@
-package com.flush_card.demo.controller;
+package com.flash_card.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

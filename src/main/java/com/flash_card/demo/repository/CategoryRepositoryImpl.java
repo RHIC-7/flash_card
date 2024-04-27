@@ -1,4 +1,4 @@
-package com.flush_card.demo.repository;
+package com.flash_card.demo.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.flush_card.demo.entity.Categories;
+import com.flash_card.demo.entity.Categories;
 
 @Repository
 public class CategoryRepositoryImpl implements CategoryRepository {

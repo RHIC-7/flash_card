@@ -1,4 +1,4 @@
-package com.flush_card.demo.controller;
+package com.flash_card.demo.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.flush_card.demo.entity.Categories;
-import com.flush_card.demo.repository.CategoryRepository;
+import com.flash_card.demo.entity.Categories;
+import com.flash_card.demo.repository.CategoryRepository;
 
 @Controller
 @RequestMapping("/register")

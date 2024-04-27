@@ -1,4 +1,4 @@
-package com.flush_card.demo.repository;
+package com.flash_card.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.flush_card.demo.entity.Categories;
+import com.flash_card.demo.entity.Categories;
 
 @AutoConfigureMockMvc
 @SpringBootTest

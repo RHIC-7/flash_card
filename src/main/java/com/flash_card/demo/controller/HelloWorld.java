@@ -1,4 +1,4 @@
-package com.flush_card.demo.controller;
+package com.flash_card.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

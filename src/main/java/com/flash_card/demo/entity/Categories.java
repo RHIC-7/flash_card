@@ -1,4 +1,4 @@
-package com.flush_card.demo.entity;
+package com.flash_card.demo.entity;
 
 import java.time.LocalDateTime;
 
