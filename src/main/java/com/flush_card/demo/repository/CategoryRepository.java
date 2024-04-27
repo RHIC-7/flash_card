@@ -5,7 +5,7 @@ import java.util.List;
 import com.flush_card.demo.entity.Categories;
 
 public interface CategoryRepository {
-    void insertCategory(Categories categories, String categoryName, Integer userId);
+    int insertCategory(Categories categories);
 
     int updateCategory(Categories categories);
 

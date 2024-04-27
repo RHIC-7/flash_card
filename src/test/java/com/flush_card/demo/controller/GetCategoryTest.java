@@ -21,4 +21,10 @@ public class GetCategoryTest {
         this.mockmvc.perform(get("/get/category"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void requestPostCategory_response200() throws Exception {
+        this.mockmvc.perform(get("/get/category"))
+                .andExpect(status().isOk());
+    }
 }

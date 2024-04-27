@@ -20,13 +20,20 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     };
 
     @Override
-    public void insertCategory(Categories categories, String userName, Integer userId) {
-
+    public int insertCategory(Categories categories) {
+        String sql = "INSERT INTO categories (category_name, user_id) VALUES (?, ?)";
+        return jdbcTemplate.update(sql,
+                categories.getCategoryName(),
+                categories.getUserId());
     };
 
     @Override
     public int updateCategory(Categories categories) {
-        return 0;
+        String sql = "UPDATE categories SET category_name = ?, user_id = ? WHERE category_id = ?";
+        return jdbcTemplate.update(sql,
+                categories.getCategoryName(),
+                categories.getUserId(),
+                categories.getId());
     };
 
     @Override

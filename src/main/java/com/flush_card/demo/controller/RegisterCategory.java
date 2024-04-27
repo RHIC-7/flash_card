@@ -2,6 +2,8 @@ package com.flush_card.demo.controller;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,18 +32,32 @@ public class RegisterCategory {
         return "/register/category";
     }
 
-    @GetMapping("/category/{id}")
-    public String getMethodName(Model model, @PathVariable("id") String id) {
-        List<Categories> categoriesList = categoryRepository.selectUserCategories(Integer.parseInt(id));
+    @GetMapping("/category/{id:[\\d]+}")
+    public String getMethodName(Model model, @PathVariable("id") Integer id) {
+        List<Categories> categoriesList = categoryRepository.selectUserCategories(id);
+
+        Categories newCategory = new Categories();
+
         model.addAttribute("categoriesLength", categoriesList.size());
+        model.addAttribute("userId", id);
         model.addAttribute("categories", categoriesList);
+        model.addAttribute("category", newCategory);
         return "/register/category";
     }
 
-    @PostMapping("/category/{id}")
-    public String postMethodName(@PathVariable("id") String id, @ModelAttribute Categories categories) {
-        categories.setUserId(Integer.parseInt(id));
-        return "/get/category";
+    @PostMapping("/category/{id:[\\d]+}")
+    public String postMethodName(@PathVariable("id") Integer id, @ModelAttribute Categories categories) {
+        categories.setUserId(id);
+        try {
+            int affectedRows = categoryRepository.insertCategory(categories);
+
+            if (affectedRows != 1) {
+                throw new DataIntegrityViolationException("予期された一行の挿入が達成されませんでした。挿入された行数: " + affectedRows);
+            }
+        } catch (DataAccessException e) {
+            System.out.println("Failded to register new category");
+        }
+        return "redirect:/register/category/" + id;
     }
 
 }
