@@ -6,31 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>カテゴリー一覧ページ</title>
+    <title>Category List</title>
 </head>
 
 <body>
     <div th:replace="~{header/header :: header}"></div>
     <div class="container">
-        <h1 class="title">カテゴリー一覧</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">userId</th>
-                    <th scope="col">Created</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="category: ${categories}">
-                    <td th:text="*{category.id}"></td>
-                    <td th:text="*{category.categoryName}"></td>
-                    <td th:text="*{category.userId}"></td>
-                    <td th:text="*{category.createdAt}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="d-flex justify-content-between align-items-center pb-5">
+            <h1 class="title">Category List</h1>
+            <a class="btn btn-primary" th:href="@{'/register/category/' + ${userId}}">Create New Category</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Category</th>
+                        <th scope="col"># of words</th>
+                        <th scope="col">Created</th>
+                        <th scope="col" class="text-center">Add</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="category, iterStat : ${categories}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td>
+                            <a th:href="@{'/flashcard/start/' + ${category.userId} + '?category=' + ${category.categoryName}}"
+                                th:text="${category.categoryName}">
+                            </a>
+                        </td>
+                        <td th:text="${wordListLength[iterStat.index]}"></td>
+                        <td th:text="${category.createdAt}"></td>
+                        <td class="text-center">
+                            <a class="btn btn-outline-primary"
+                                th:href="@{'/register/word/' + ${category.userId} + '?category=' + ${category.categoryName}}">add</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

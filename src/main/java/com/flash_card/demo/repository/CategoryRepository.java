@@ -9,9 +9,11 @@ public interface CategoryRepository {
 
     int updateCategory(Categories categories);
 
+    String CategoryIdToName(Integer id);
+
+    Integer CategoryNameToId(String name);
+
     List<Categories> selectCategories();
 
     List<Categories> selectUserCategories(Integer id);
-
-    List<Categories> executeSqlCommand(String sql);
 }

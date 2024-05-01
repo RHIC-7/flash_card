@@ -10,3 +10,5 @@ spring:
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
       encoding: utf-8
+  jpa:
+    open-in-view: false

@@ -8,7 +8,8 @@ CREATE TABLE users
     username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    UNIQUE (email)
 );
 
 CREATE TABLE categories
@@ -18,7 +19,8 @@ CREATE TABLE categories
     user_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(category_id),
-    FOREIGN KEY(user_id) REFERENCES users(id)
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    UNIQUE (category_name)
 );
 
 CREATE TABLE words
@@ -26,11 +28,12 @@ CREATE TABLE words
     id INT NOT NULL AUTO_INCREMENT,
     category_id INT NOT NULL,
     word VARCHAR(100) NOT NULL,
-    word_explain VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     user_id INT NOT NULL,
     wrong_times INT DEFAULT 0,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
     FOREIGN KEY(category_id) REFERENCES categories(category_id),
-    FOREIGN KEY(user_id) REFERENCES users(id)
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    UNIQUE (word)
 );

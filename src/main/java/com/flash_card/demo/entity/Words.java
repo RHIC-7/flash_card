@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "words")
 public class Words {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,8 @@ public class Words {
     @Column(name = "word")
     private String word;
 
-    @Column(name = "word_explain")
-    private String wordExplain;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "user_id")
     private Integer userId;
@@ -35,12 +35,12 @@ public class Words {
     public Words() {
     }
 
-    public Words(Integer id, Integer categoryId, String word, String wordExplain, Integer userId,
+    public Words(Integer id, Integer categoryId, String word, String description, Integer userId,
             LocalDateTime createdAt) {
         this.id = id;
         this.categoryId = categoryId;
         this.word = word;
-        this.wordExplain = wordExplain;
+        this.description = description;
         this.userId = userId;
         this.createdAt = createdAt;
     }
@@ -69,12 +69,12 @@ public class Words {
         this.word = word;
     }
 
-    public String getwordExplain() {
-        return wordExplain;
+    public String getDescription() {
+        return description;
     }
 
-    public void setwordExplain(String wordExplain) {
-        this.wordExplain = wordExplain;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getUserId() {

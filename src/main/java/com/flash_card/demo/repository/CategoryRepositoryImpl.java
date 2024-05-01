@@ -37,6 +37,19 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     };
 
     @Override
+    public String CategoryIdToName(Integer id) {
+        String sql = "SELECT category_name FROM categories WHERE category_id = ?";
+        return jdbcTemplate.queryForList(sql, new Object[] { id }).get(0).get("category_name").toString();
+    }
+
+    @Override
+    public Integer CategoryNameToId(String name) {
+        String sql = "SELECT category_id FROM categories WHERE category_name = ?";
+        Integer categoryId = jdbcTemplate.queryForObject(sql, Integer.class, name);
+        return categoryId;
+    }
+
+    @Override
     public List<Categories> selectCategories() {
         String sql = "SELECT * FROM categories";
         List<Categories> list = this.executeSqlCommand(sql);
@@ -52,8 +65,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         return list;
     }
 
-    @Override
-    public List<Categories> executeSqlCommand(String sql) {
+    private List<Categories> executeSqlCommand(String sql) {
         List<Map<String, Object>> categoryListObject = jdbcTemplate.queryForList(sql);
         List<Categories> list = categoryListObject.stream().map(result -> new Categories(
                 (Integer) result.get("category_id"),

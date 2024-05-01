@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flash_card.demo.entity.Categories;
 import com.flash_card.demo.repository.CategoryRepository;
@@ -46,7 +47,9 @@ public class RegisterCategory {
     }
 
     @PostMapping("/category/{id:[\\d]+}")
-    public String postMethodName(@PathVariable("id") Integer id, @ModelAttribute Categories categories) {
+    public String postMethodName(Model model, @PathVariable("id") Integer id,
+            @ModelAttribute Categories categories,
+            RedirectAttributes redirectAttributes) {
         categories.setUserId(id);
         try {
             int affectedRows = categoryRepository.insertCategory(categories);
@@ -54,10 +57,13 @@ public class RegisterCategory {
             if (affectedRows != 1) {
                 throw new DataIntegrityViolationException("予期された一行の挿入が達成されませんでした。挿入された行数: " + affectedRows);
             }
+        } catch (DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("warning", "登録されたカテゴリは既に登録済みです");
         } catch (DataAccessException e) {
-            System.out.println("Failded to register new category");
+            System.out.println("Failed to register new category due to an unexpected error: " + e.getMessage());
         }
-        return "redirect:/register/category/" + id;
-    }
 
+        model.addAttribute("userId", id);
+        return "redirect:" + id;
+    }
 }
