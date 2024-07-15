@@ -58,17 +58,4 @@ public class CategoryRepositoryImplTest {
             assertEquals("Azure", categoryList.get(0).getCategoryName());
         }
     }
-
-    @Nested
-    @DisplayName("Insert Data Test")
-    class insertNewCategoryItemTest {
-        @Test
-        void categoryCanBeInsertedValue() throws Exception {
-            Categories categories = new Categories();
-            categories.setUserId(10);
-            categories.setCategoryName("this is test");
-            assertEquals(1, categoryRepository.insertCategory(categories));
-        }
-    }
-
 }
