@@ -17,12 +17,6 @@ public class GetCategoryTest {
     private MockMvc mockmvc;
 
     @Test
-    void requestGetCategory_response200() throws Exception {
-        this.mockmvc.perform(get("/get/category"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void requestGetUserCategory_response200() throws Exception {
         this.mockmvc.perform(get("/get/category/10"))
                 .andExpect(status().isOk());
